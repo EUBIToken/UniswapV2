@@ -545,7 +545,7 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
 		uint _totalSupply1 = _totalSupply; // gas savings, must be defined here since totalSupply can update in _mintFee
 		if (_totalSupply == 0) {
 			liquidity = Math.sqrt(amount0.mul(amount1)).sub(10**3);
-		   _mint(address(0), 10**3); // permanently lock the first MINIMUM_LIQUIDITY tokens
+		   _mint(address(1), 10**3); // permanently lock the first MINIMUM_LIQUIDITY tokens
 		} else {
 			liquidity = Math.min(amount0.mul(_totalSupply1) / _reserve0, amount1.mul(_totalSupply1) / _reserve1);
 		}
