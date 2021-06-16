@@ -815,7 +815,7 @@ contract ERC223wrapperToken is IERC223{
 	 * and returns `true` on success.
 	 */
 	function transfer(address to, uint value) public returns (bool success){
-		success = IERC20(_underlyingToken).transfer(to, value);
+		success = IERC20(_underlyingToken).transferFrom(msg.sender, to, value);
 		if(isContract(to)) {
 			IERC223Recipient receiver = IERC223Recipient(to);
 			bytes memory empty = hex"00000000";
@@ -828,7 +828,7 @@ contract ERC223wrapperToken is IERC223{
 	 * and returns `true` on success.
 	 */
 	function transfer(address to, uint value, bytes memory data) public returns (bool success){
-		success = IERC20(_underlyingToken).transfer(to, value);
+		success = IERC20(_underlyingToken).transferFrom(msg.sender, to, value);
 		if(isContract(to)) {
 			IERC223Recipient receiver = IERC223Recipient(to);
 			receiver.tokenFallback(msg.sender, value, data);
